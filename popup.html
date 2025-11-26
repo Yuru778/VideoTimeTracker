@@ -8,43 +8,79 @@
 </head>
 <body>
     <div class="container">
-        <header>
-            <h2>今日學習統計</h2>
-            <span id="date" class="date-badge">2023-10-27</span>
-        </header>
+        <!-- 頁面 1: 今日儀表板 -->
+        <div id="page-dashboard">
+            <header>
+                <h2>今日學習統計</h2>
+                <span id="date" class="date-badge">Loading...</span>
+            </header>
 
-        <div class="settings-bar" style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; background: #2d2d2d; padding: 8px 12px; border-radius: 8px;">
-            <span style="font-size: 13px; color: #ccc;">顯示懸浮面板</span>
-            <label class="switch" style="position: relative; display: inline-block; width: 34px; height: 20px;">
-                <input type="checkbox" id="toggleOverlay">
-                <span class="slider" style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #555; transition: .4s; border-radius: 20px;"></span>
-            </label>
+            <div class="settings-bar">
+                <span class="setting-label">懸浮面板</span>
+                <label class="switch">
+                    <input type="checkbox" id="toggleOverlay">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card video">
+                    <div class="icon">🎥</div>
+                    <div class="label">影片播放</div>
+                    <div class="value" id="videoTime">00:00:00</div>
+                </div>
+                
+                <div class="stat-card interaction">
+                    <div class="icon">⚡</div>
+                    <div class="label">專注互動</div>
+                    <div class="value" id="interactionTime">00:00:00</div>
+                </div>
+                
+                <div class="stat-card total">
+                    <div class="icon">⏳</div>
+                    <div class="label">總掛機</div>
+                    <div class="value" id="totalTime">00:00:00</div>
+                </div>
+            </div>
+
+            <button id="btn-history" class="nav-btn">📊 查看歷史統計 & 匯出</button>
         </div>
-        
-        <div class="stats-grid">
-            <div class="stat-card video">
-                <div class="icon">🎥</div>
-                <div class="label">影片播放</div>
-                <div class="value" id="videoTime">00:00:00</div>
+
+        <!-- 頁面 2: 歷史統計 -->
+        <div id="page-history" class="hidden">
+            <header>
+                <button id="btn-back" class="back-btn">← 返回</button>
+                <h2>歷史統計</h2>
+            </header>
+
+            <div class="summary-box">
+                <div class="summary-item">
+                    <span class="lbl">累計學習</span>
+                    <span class="val" id="total-learning">0h</span>
+                </div>
+                <div class="summary-item">
+                    <span class="lbl">總天數</span>
+                    <span class="val" id="total-days">0</span>
+                </div>
             </div>
-            
-            <div class="stat-card interaction">
-                <div class="icon">⚡</div>
-                <div class="label">專注互動</div>
-                <div class="value" id="interactionTime">00:00:00</div>
+
+            <div class="calendar-controls">
+                <button id="prevMonth">◀</button>
+                <span id="currentMonthLabel">2023 年 10 月</span>
+                <button id="nextMonth">▶</button>
             </div>
-            
-            <div class="stat-card total">
-                <div class="icon">🕒</div>
-                <div class="label">總掛機時間</div>
-                <div class="value" id="totalTime">00:00:00</div>
+
+            <div class="calendar-grid" id="calendar">
+                <!-- JS 動態生成 -->
             </div>
+
+            <button id="btn-export" class="action-btn">📥 匯出 Excel (CSV)</button>
         </div>
 
         <footer>
             <div class="status">
                 <span class="indicator">●</span> 
-                <span id="syncStatus">已同步至 Google 帳號</span>
+                <span id="syncStatus">數據已同步</span>
             </div>
         </footer>
     </div>

@@ -2,11 +2,12 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #1e1e1e;
     color: #ffffff;
-    width: 320px;
+    width: 340px; /* 稍微加寬以容納月曆 */
     margin: 0;
     padding: 16px;
 }
 
+/* Header & Nav */
 header {
     display: flex;
     justify-content: space-between;
@@ -30,9 +31,64 @@ h2 {
     color: #aaa;
 }
 
+.back-btn {
+    background: none;
+    border: none;
+    color: #aaa;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0;
+}
+.back-btn:hover { color: #fff; }
+
+/* Settings Bar */
+.settings-bar {
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #2d2d2d;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+.setting-label {
+    font-size: 13px;
+    color: #ccc;
+}
+
+/* Toggle Switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+}
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #555;
+    transition: .4s;
+    border-radius: 20px;
+}
+.slider:before {
+    position: absolute; content: "";
+    height: 14px; width: 14px;
+    left: 3px; bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+input:checked + .slider { background-color: #4dff88; }
+input:checked + .slider:before { transform: translateX(14px); }
+
+/* Stats Grid */
 .stats-grid {
     display: grid;
     gap: 12px;
+    margin-bottom: 16px;
 }
 
 .stat-card {
@@ -44,25 +100,114 @@ h2 {
     align-items: center;
     border-left: 4px solid transparent;
 }
+.stat-card.video { border-left-color: #ff6b6b; }
+.stat-card.interaction { border-left-color: #51cf66; }
+.stat-card.total { border-left-color: #4dabf7; }
 
-.stat-card.video { border-left-color: #ff4d4d; }
-.stat-card.interaction { border-left-color: #4dff88; }
-.stat-card.total { border-left-color: #4d94ff; }
+.icon { font-size: 18px; }
+.label { font-size: 13px; color: #ccc; }
+.value { font-size: 16px; font-weight: bold; font-family: monospace; }
 
-.icon {
-    font-size: 18px;
-}
-
-.label {
+/* Buttons */
+.nav-btn, .action-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
     font-size: 13px;
-    color: #ccc;
+    transition: background 0.2s;
+}
+.nav-btn:hover { background-color: #444; }
+.action-btn { background-color: #1b6ec2; margin-top: 12px; }
+.action-btn:hover { background-color: #1861ac; }
+
+/* Hidden Pages */
+.hidden { display: none; }
+
+/* Calendar Styles */
+.summary-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+.summary-item {
+    flex: 1;
+    background: #252525;
+    padding: 8px;
+    border-radius: 6px;
+    text-align: center;
+}
+.summary-item .lbl { display: block; font-size: 11px; color: #888; }
+.summary-item .val { display: block; font-size: 18px; font-weight: bold; color: #eee; }
+
+.calendar-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+.calendar-controls button {
+    background: none; border: none; color: #aaa; cursor: pointer;
+}
+.calendar-controls button:hover { color: #fff; }
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
 }
 
-.value {
-    font-size: 16px;
-    font-weight: bold;
-    font-family: monospace;
+.cal-day {
+    aspect-ratio: 1;
+    background: #252525;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #666;
+    cursor: default;
+    position: relative;
 }
+
+.cal-day.has-data {
+    background: #3a3a3a;
+    color: #fff;
+    cursor: pointer;
+}
+.cal-day.has-data:hover {
+    background: #51cf66;
+    color: #000;
+}
+
+.cal-day.today {
+    border: 1px solid #4dff88;
+}
+
+/* Tooltip */
+.cal-day .tooltip {
+    visibility: hidden;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.95);
+    color: #fff;
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    white-space: nowrap;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    border: 1px solid #444;
+    margin-bottom: 6px;
+    text-align: left;
+}
+.cal-day:hover .tooltip { visibility: visible; }
 
 footer {
     margin-top: 16px;
@@ -70,38 +215,4 @@ footer {
     color: #666;
     text-align: center;
 }
-
-.indicator {
-    color: #4dff88;
-}
-
-/* Toggle Switch Styles */
-.switch input { 
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 14px;
-    width: 14px;
-    left: 3px;
-    bottom: 3px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 50%;
-}
-
-input:checked + .slider {
-    background-color: #4dff88;
-}
-
-input:focus + .slider {
-    box-shadow: 0 0 1px #4dff88;
-}
-
-input:checked + .slider:before {
-    transform: translateX(14px);
-}
+.indicator { color: #4dff88; }
