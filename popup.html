@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>學習時間追蹤</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h2>今日學習統計</h2>
+            <span id="date" class="date-badge">2023-10-27</span>
+        </header>
+
+        <div class="settings-bar" style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; background: #2d2d2d; padding: 8px 12px; border-radius: 8px;">
+            <span style="font-size: 13px; color: #ccc;">顯示懸浮面板</span>
+            <label class="switch" style="position: relative; display: inline-block; width: 34px; height: 20px;">
+                <input type="checkbox" id="toggleOverlay">
+                <span class="slider" style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #555; transition: .4s; border-radius: 20px;"></span>
+            </label>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card video">
+                <div class="icon">🎥</div>
+                <div class="label">影片播放</div>
+                <div class="value" id="videoTime">00:00:00</div>
+            </div>
+            
+            <div class="stat-card interaction">
+                <div class="icon">⚡</div>
+                <div class="label">專注互動</div>
+                <div class="value" id="interactionTime">00:00:00</div>
+            </div>
+            
+            <div class="stat-card total">
+                <div class="icon">🕒</div>
+                <div class="label">總掛機時間</div>
+                <div class="value" id="totalTime">00:00:00</div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="status">
+                <span class="indicator">●</span> 
+                <span id="syncStatus">已同步至 Google 帳號</span>
+            </div>
+        </footer>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html>

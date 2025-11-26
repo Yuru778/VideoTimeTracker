@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Google Skills Tracker",
+  "version": "1.0",
+  "description": "追蹤 Skills Google 影片播放與學習互動時間",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://www.skills.google/*",
+    "*://*.youtube.com/*",
+    "*://*.youtube-nocookie.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "查看學習時數"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.skills.google/*",
+        "*://*.youtube.com/*",
+        "*://*.youtube-nocookie.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}
