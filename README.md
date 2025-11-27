@@ -3,7 +3,7 @@
 這是一個輕量級的瀏覽器擴充功能 (Chrome/Edge/Brave)，專為 [Google Skills](https://www.skills.google/) 學習平台設計。它能精確追蹤您的影片觀看時間、專注互動時間與掛機時間，並支援跨裝置數據同步與 Excel 匯出。
 
 <!-- 在此處插入專案 Banner 或主要截圖 -->
-<!-- ![Video Time Tracker Screenshot](./screenshots/main-banner.png) -->
+![Video Time Tracker Screenshot](./screenshots/main-banner.png)
 
 ## ✨ 主要功能
 
@@ -51,7 +51,7 @@
     *   選擇本專案的資料夾 (`VideoTimeTracker`)。
 
 <!-- 在此處插入安裝步驟截圖 -->
-<!-- ![Installation Guide](./screenshots/install-guide.png) -->
+![Installation Guide](./screenshots/install-guide.png)
 
 ## 📖 使用說明
 
@@ -67,7 +67,7 @@
     *   **開關懸浮窗**：可在 Popup 中隨時開啟或關閉網頁上的懸浮面板。
 
 <!-- 在此處插入 Popup 與月曆介面截圖 -->
-<!-- ![Popup Interface](./screenshots/popup-calendar.png) -->
+![Popup Interface](./screenshots/popup-calendar.png)
 
 ## 🛠️ 開發與技術細節
 
